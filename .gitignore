@@ -40,7 +40,7 @@ jspm_packages/
 typings/
 
 # Docker data directories
-/.docker/elasticdata/
+.docker/elasticdata/
 
 # Optional npm cache directory
 .npm
