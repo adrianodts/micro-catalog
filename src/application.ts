@@ -12,8 +12,8 @@ import {MySequence} from './sequence';
 
 export class MicroCatalogApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
-) {
-  constructor(options: ApplicationConfig = {}) {
+  ) {
+    constructor(options: ApplicationConfig = {}) {
     super(options);
 
     // Set up the custom sequence

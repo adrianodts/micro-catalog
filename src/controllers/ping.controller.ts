@@ -2,6 +2,7 @@ import {Request, RestBindings, get, ResponseObject} from '@loopback/rest';
 import {inject} from '@loopback/context';
 import { CategoryRepository } from '../repositories';
 import { repository } from '@loopback/repository';
+import { debug } from 'console';
 
 /**
  * OpenAPI response for ping()
@@ -56,8 +57,9 @@ export class PingController {
   }
 
   @get('/categories')
-  index() {
-    this.categoryRepo.create({
+  async index() {
+    // debug(this.categoryRepo);
+    await this.categoryRepo.create({
       id: '1',
       name: 'Product 1',
       description: 'This product is very useful.'

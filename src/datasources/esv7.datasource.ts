@@ -3,22 +3,24 @@ import {juggler} from '@loopback/repository';
 
 const config = {
   name: 'esv7',
-  connector: 'esv6',
+  connector: 'esv7',
   index: 'catalog',
-  apiVersion: '7',
+  version: '7.0',
+  debug: true,
+  hosts: [
+    {
+      protocol: process.env.ELASTIC_SEARCH_PROTOCOL,
+      host: process.env.ELASTIC_SEARCH_HOST,
+      port: process.env.ELASTIC_SEARCH_PORT,
+      auth: 'username:password'
+    }
+  ],
   configuration: { 
-    node: process.env.ELASTIC_SEARCH_HOST,
+    node: `${process.env.ELASTIC_SEARCH_PROTOCOL}://${process.env.ELASTIC_SEARCH_HOST}:${process.env.ELASTIC_SEARCH_PORT}`,
     requestTimeout: process.env.ELASTIC_SEARCH_REQUEST_TIMEOUT,
-    pingTimeout: process.env.ELASTIC_SEARCH_PING_TIMEOUT
+    pingTimeout: process.env.ELASTIC_SEARCH_PING_TIMEOUT,
   },
-  mappingProperties: {
-
-  },
-  defaultSize: 50,
-  indexSettings: {
-    number_of_shards: 2,
-    number_of_replicas: 1
-  },
+  defaultSize: ''
 };
 
 // Observe application's life cycle to disconnect the datasource when
@@ -29,11 +31,13 @@ const config = {
 export class Esv7DataSource extends juggler.DataSource
   implements LifeCycleObserver {
   static dataSourceName = 'esv7';
-  // static readonly defaultConfig = config;
-  // @inject('datasources.config.esv7', {optional: true})
-  // dsConfig: object = config,
-  constructor() {
-    super(config);
+  static readonly defaultConfig = config;
+
+  constructor(
+    @inject('datasources.config.esv7', {optional: true})
+    dsConfig: object = config
+  ) {
+    super(dsConfig);
   }
 
   /**

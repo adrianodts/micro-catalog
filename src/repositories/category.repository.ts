@@ -1,5 +1,6 @@
 import {inject} from '@loopback/core';
 import {DefaultCrudRepository} from '@loopback/repository';
+import debug from 'debug';
 import {Esv7DataSource} from '../datasources';
 import {Category, CategoryRelations} from '../models';
 
@@ -12,5 +13,6 @@ export class CategoryRepository extends DefaultCrudRepository<
     @inject('datasources.esv7') dataSource: Esv7DataSource,
   ) {
     super(Category, dataSource);
+    debug("is connected: " + dataSource.connected);
   }
 }

@@ -19,6 +19,8 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
     container_name: micro-catalog-elasticsearch
     environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - discovery.type=single-node
     volumes:
       - ./.docker/elasticdata:/usr/share/elasticsearch/data
@@ -34,7 +36,6 @@ services:
       - 5601:5601
     networks:
       - app-network
-
 
 networks:
   app-network:
