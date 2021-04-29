@@ -6,7 +6,7 @@ const config = {
   connector: 'esv7',
   index: 'catalog',
   version: '7.0',
-  debug: true,
+  debug: process.env.APP_ENV === 'dev',
   hosts: [
     {
       protocol: process.env.ELASTIC_SEARCH_PROTOCOL,
@@ -17,10 +17,37 @@ const config = {
   ],
   configuration: { 
     node: `${process.env.ELASTIC_SEARCH_PROTOCOL}://${process.env.ELASTIC_SEARCH_HOST}:${process.env.ELASTIC_SEARCH_PORT}`,
+    //node: process.env.ELASTIC_SEARCH_HOST,
     requestTimeout: process.env.ELASTIC_SEARCH_REQUEST_TIMEOUT,
     pingTimeout: process.env.ELASTIC_SEARCH_PING_TIMEOUT,
   },
-  defaultSize: ''
+  // mappingProperties: {
+  //   docType: {
+  //     type: 'keyword'
+  //   },
+  //   id: {
+  //     type: 'keyword'
+  //   },
+  //   name: {
+  //     type: 'text',
+  //     fields: {
+  //       keyword: {
+  //         type: 'text',
+  //         ignore_above: 256
+  //       }
+  //     }
+  //   },
+  //   is_active: {
+  //     type: 'boolean'
+  //   },
+  //   created_at: {
+  //     type: 'date'
+  //   },
+  //   updated_at: {
+  //     type: 'date'
+  //   }
+  // }
+  //defaultSize: ''
 };
 
 // Observe application's life cycle to disconnect the datasource when
