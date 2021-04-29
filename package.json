@@ -46,7 +46,6 @@
     "!*/__tests__"
   ],
   "dependencies": {
-    "@elastic/elasticsearch": "git+https://github.com/elastic/elasticsearch-js.git",
     "@loopback/boot": "^3.3.1",
     "@loopback/context": "^3.15.1",
     "@loopback/core": "^2.15.1",
@@ -55,9 +54,10 @@
     "@loopback/rest": "^9.2.1",
     "@loopback/rest-explorer": "^3.2.1",
     "@loopback/service-proxy": "^3.1.1",
+    "@types/amqplib": "^0.5.17",
+    "amqplib": "^0.7.1",
     "debug": "^4.3.1",
     "dotenv": "^8.2.0",
-    "loopback-connector-es": "^1.4.1",
     "loopback-connector-esv7": "1.0.3",
     "nodemon": "^2.0.7"
   },

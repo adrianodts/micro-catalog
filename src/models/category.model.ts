@@ -1,6 +1,11 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model() //{settings: {strict: false}})
+@model({
+  //name: "categories",
+  // settings: {
+  //   strict: false
+  // }
+})
 export class Category extends Entity {
   @property({
     type: 'string',
@@ -17,9 +22,25 @@ export class Category extends Entity {
   name: string;
 
   @property({
-    type: 'string',
+    type: 'boolean',
+    required: false,
+    default: true
   })
-  description?: string;
+  is_active: boolean;
+
+  @property({
+    //name: 'createdAt', //Para modificar o nome do campo no metadado
+    type: 'date',
+    required: true,
+    default: 'now'
+  })
+  created_at: string;
+
+  @property({
+    type: 'date',
+    required: false
+  })
+  updated_at: string;
 
   // Define well-known properties here
 
